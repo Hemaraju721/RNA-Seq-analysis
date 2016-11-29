@@ -1,13 +1,13 @@
-#H1RNA Seq Analysis to detect and categorize noncoding RNAs and further identify respective targets
-#H4Introduction
+#H1 RNA Seq Analysis to detect and categorize noncoding RNAs and further identify respective targets
+#H4 Introduction
 RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarray, RNA-Seq provides unbiased detection of novel transcripts, broader dynamic range for read counts, and easier detection of rare and low-abundance transcripts.
-#H4Dataset
+#H4 Dataset
 Dataset includes two tissues, DRG (3 samples) and CGN (2 samples).
 Each sample – 40 million, 50 bp reads
 
-#H4Methodology :
+#H4 Methodology :
 
-#H5Quality Control
+#H5 Quality Control
 Step 1.	FASTQC: Prior to running RNA Seq alignment, it is important ro run fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/. Command line to run fastqc on unix is $FastQC DRG1.Fasta. This generates folder as an output with many report file. Open the index file after transferring to your windows desktop. All the green should ideally light up but that seldom happens. In the file there is a section "Per base sequence content" which should tell you how much to trim from either end. Usually it is better to choose base position which has variable content. Repeat the same steps for remaining 4 samples as well.
 
 Step 2.	TRIMMOMATIC: To do trimming use trimmomatic. Clip using the values you found using previous steps and also provide a minimum Mapping Q score you want to keep. UM CCS tries to keep 20 as cut-off but here more stringent values are preferred. Minimum length to be kept depends on your original sequence length. Don’t go below 36bp.
