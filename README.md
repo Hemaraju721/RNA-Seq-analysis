@@ -22,7 +22,7 @@ java –jar  /projects/MainFolder/SubFolder/ProjName/Trimmomatic-0.36/trimmoatic
 Make sure to index them after you download them
 $ wget -c 'ftp://ftp.ensembl.org/pub/release-84/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz'
 cd ../rm_masked
-gunzip Homo_sapiens.GRCh38.dna_rm.primary_assembly.fa.gz
+gunzip Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz
 
 **Step 4**.	To filter out non-conventional chromosomes using script(filter_genome.pl)
 
@@ -51,6 +51,7 @@ To run the script : $bsub < MyTopHat.sh
 To assemble the transcripts using cufflinks, use the following script
 
 Script : DRG_CGN_Cufflinks.sh
+CODE for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/filtergenome.pl
 
 To run the script : $bsub < MyCufflinks.sh
 
@@ -85,6 +86,8 @@ Script : lincToPC.pl
 
 To run the script : $bsub < lincToPC.pl <OutputFileName>
 
+CODE for lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/lincToPc.pl
+
 Sample OutputFile : SampleLincAndPC.txt
 
 **Step 12**.	ANTISENSE AND TARGETS : Extract all Antisense RNAs, chromosome, strand and genomic coordinates from step 10 and put them in a file called lincRNA.txt. Extract all protein coding genes chromosome, strand and genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called AntisenseToPConOppositeStrand.pl to identify the neighboring expressed protein coding genes
@@ -93,12 +96,22 @@ Sample asRNA.txt : SamplelincRNA.txt
 
 Sample PC.txt : SamplePC.txt
 
-Script : AntisenseToPConOppositeStrand.pl
+Script : antiOppGene.pl
 
-To run the script : $bsub < AntisenseToPConOppositeStrand.pl  <OutputFileName>
+CODE for antiOppGene.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/antiOppGene.pl
+
+
+To run the script : $bsub < antiOppGene.pl  <OutputFileName>
 
 Sample OutputFile : AsRNAOutput.txt
 
 **Step 13**.	PSEUDOGENE AND PARENT PROTEIN CODING GENE (TARGETS)
 
+The pseudogene sequences are mapped against the protein coding gene sequences using BLAST, and only the unique hits are  assigned to parent gene-pseudogene associations. 
+
+Fasta sequences for protein-coding genes and pseudogenes are downloaded from the reference genome, Mus_musculus.GRCm38.dna_rm.primary_assembly.fa. 
+
+These two sets of sequences are mapped against each other using BLAST and the parameter “-max_target_seqs :1” to detect only those protein-coding genes that have a high-level of sequence homology to the pseudogenes used as query. 
+
+Finally, the output obtained from BLAST analyzed to overcome the multiple associations, i.e. when a pseudogene aligns to multiple protein-coding genes. The BLAST output was filtered using the “sort –u” option, which sorts the file and pipes the output that contains only unique hits. Therefore, only unique hits are obtained for further analysis.
 
