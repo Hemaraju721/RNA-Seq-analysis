@@ -45,7 +45,7 @@ To align the sample files against the mouse genome using TopHat2.0, use the foll
 
 Script : MyTopHat.sh
 
-CODE for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
+Code for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
 
 To run the script : $bsub < MyTopHat.sh
 
@@ -54,32 +54,42 @@ To run the script : $bsub < MyTopHat.sh
 To assemble the transcripts using cufflinks, use the following script
 
 Script :MyCufflinks.sh
-CODE for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCufflinks.sh
+
+Code for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCufflinks.sh
 
 To run the script : $bsub < MyCufflinks.sh
 
 **Step 7**.	Combine all the transcript files created from Step 6:
 
-Script : Cufflinks.gtf.list
+Script : Create a Cufflinks.gtf.list file
 
-To run the script : $bsub < Cufflinks.gtf.list
+Code for cufflinks.gtf.list :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/cufflinks.gtf.list
 
 **Step 8**.	Merge GTF file along with the combined gtf file created from step 7
 
-Script : Cuffmerge.sh
+Script : MyCuffMerge.sh
 
-To run the script : $bsub < Cuffmerge.sh
+Code for MyCuffMerge :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffMerge.sh
+
+To run the script : $bsub < MyCuffmerge.sh
 
 **Step 9**.	Detect the normalized gene expression
 
-Script : Cuffnorm.sh
+Script : MyCuffQuant.sh
 
-To run the script : $bsub < Cuffnorm.sh
+Code for MyCuffQuant.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffQuant.sh
 
-**Step 10**.	Categorize the noncoding RNAs
-Script : ????
+To run the script : $bsub < MyCuffQuant.sh
 
-**Step 11**.	LINCRNA AND TARGETS : Extract all lincRNAs, chromosome and their genomic coordinates from step 10 and put them in a file called lincRNA.txt. Extract all protein coding genes, chromosome and their genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called lincToPc.pl to identify the neighboring expressed protein coding genes
+**Step 10**.	Detect the normalized gene expression
+
+Script : MyCuffnorm.sh
+
+Code for MyCuffnorm.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffNorm.sh
+
+To run the script : $bsub < MyCuffnorm.sh
+
+**Step 11**.	LINCRNA AND TARGETS : Extract all lincRNAs, chromosome and their genomic coordinates from step 10 and put them in a file called PC.txt. Extract all protein coding genes, chromosome and their genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called lincToPc.pl to identify the neighboring expressed protein coding genes
 
 Sample lincRNA.txt : SamplelincRNA.txt
 
