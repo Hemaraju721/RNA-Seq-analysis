@@ -20,6 +20,7 @@ java –jar  /projects/MainFolder/SubFolder/ProjName/Trimmomatic-0.36/trimmoatic
 **Step 3**.	DOWNLOAD GENOME: In the Ensembl directory there are 3 versions of genome. repeatmasked(rm), small-masked(sm) and regular. 
 "Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz" [repeat masked entire genome]
 Make sure to index them after you download them
+
 $ wget -c 'ftp://ftp.ensembl.org/pub/release-84/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz'
 cd ../rm_masked
 gunzip Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz
@@ -34,8 +35,8 @@ To build the index : $bowtie2-build <Mus_musculus.GRCm38_RMasked.fa><mm38>
 
 To rename the file: $cp <Mus_musculus.GRCm38_RMasked><mm38.fa>
 
-To create symbolic link : $ln-a <mm38.fa> <mm38.fa.fa>
-$ ln -s Hs_RMasked.fa Hs_RMasked.fa.fa
+To create symbolic link : $ln-s <mm38.fa> <mm38.fa.fa>
+
 
 ####Alignment and transcriptome assembly
 
@@ -43,15 +44,15 @@ $ ln -s Hs_RMasked.fa Hs_RMasked.fa.fa
 To align the sample files against the mouse genome using TopHat2.0, use the following script.
 
 Script : MyTopHat.sh
-CODE for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/DRG1.sh
+CODE for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
 To run the script : $bsub < MyTopHat.sh
 
 **Step 6**.	TRANSCRIPT ASSEMBLY USING CUFFLINKS
 
 To assemble the transcripts using cufflinks, use the following script
 
-Script : DRG_CGN_Cufflinks.sh
-CODE for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/filtergenome.pl
+Script :MyCufflinks.sh
+CODE for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCufflinks.sh
 
 To run the script : $bsub < MyCufflinks.sh
 
@@ -90,9 +91,9 @@ CODE for lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master
 
 Sample OutputFile : SampleLincAndPC.txt
 
-**Step 12**.	ANTISENSE AND TARGETS : Extract all Antisense RNAs, chromosome, strand and genomic coordinates from step 10 and put them in a file called lincRNA.txt. Extract all protein coding genes chromosome, strand and genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called AntisenseToPConOppositeStrand.pl to identify the neighboring expressed protein coding genes
+**Step 12**.	ANTISENSE AND TARGETS : Extract all Antisense RNAs, chromosome, strand and genomic coordinates from step 10 and put them in a file called asRNA.txt. Extract all protein coding genes chromosome, strand and genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called AntisenseToPConOppositeStrand.pl to identify the neighboring expressed protein coding genes
 
-Sample asRNA.txt : SamplelincRNA.txt
+Sample asRNA.txt : SampleasRNA.txt
 
 Sample PC.txt : SamplePC.txt
 
