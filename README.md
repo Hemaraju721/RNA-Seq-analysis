@@ -44,7 +44,9 @@ To create symbolic link : $ln-s <mm38.fa> <mm38.fa.fa>
 To align the sample files against the mouse genome using TopHat2.0, use the following script.
 
 Script : MyTopHat.sh
+
 CODE for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
+
 To run the script : $bsub < MyTopHat.sh
 
 **Step 6**.	TRANSCRIPT ASSEMBLY USING CUFFLINKS
