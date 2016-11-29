@@ -37,7 +37,7 @@ To rename the file: $cp <Mus_musculus.GRCm38_RMasked><mm38.fa>
 To create symbolic link : $ln-a <mm38.fa> <mm38.fa.fa>
 $ ln -s Hs_RMasked.fa Hs_RMasked.fa.fa
 
-####ALIGNMENT AND TRANSCRIPTOME ASSEMBLY
+####Alignment and transcriptome assembly
 
 **Step 5**.	ALIGNMENT USING TOPHAT 2.0
 To align the sample files against the mouse genome using TopHat2.0, use the following script.
