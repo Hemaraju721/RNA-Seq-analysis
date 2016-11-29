@@ -2,7 +2,7 @@
 ### Introduction
 RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarray, RNA-Seq provides unbiased detection of novel transcripts, broader dynamic range for read counts, and easier detection of rare and low-abundance transcripts.
 ### Dataset
-Dataset includes two tissues, DRG (3 samples) and CGN (2 samples).
+Dataset includes two tissues - Tissue1 (3 samples) and Tissue2 (2 samples).
 Each sample – 40 million, 50 bp reads
 
 ### Methodology :
@@ -10,6 +10,7 @@ Each sample – 40 million, 50 bp reads
 #### Quality Control
 **Step 1**.	FASTQC: Prior to running RNA Seq alignment, it is important ro run fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/. 
 Command line to run fastqc on unix is $FastQC DRG1.Fasta. 
+
 This generates folder as an output with many report files. Open the index file after transferring to your windows desktop. All the green should ideally light up but that seldom happens. In the file there is a section "Per base sequence content" which should tell you how much to trim from either end. Usually it is better to choose base position which has variable content. Repeat the same steps for remaining samples as well.
 
 **Step 2**.	TRIMMOMATIC: To do trimming use trimmomatic. Clip using the values you found using previous steps and also provide a minimum Mapping Q score (we used 20) you want to keep, but here more stringent values are preferred. Minimum length to be kept depends on your original sequence length. Don’t go below 36bp.
@@ -40,9 +41,9 @@ $ ln -s Hs_RMasked.fa Hs_RMasked.fa.fa
 **Step 5**.	ALIGNMENT USING TOPHAT 2.0
 To align the sample files against the mouse genome using TopHat2.0, use the following script.
 
-Script : DRG1.sh
-CODE for DRG1.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/DRG1.sh
-To run the script : $bsub < DRG1.sh
+Script : MyTopHat.sh
+CODE for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/DRG1.sh
+To run the script : $bsub < MyTopHat.sh
 
 **Step 6**.	TRANSCRIPT ASSEMBLY USING CUFFLINKS
 
@@ -50,7 +51,7 @@ To assemble the transcripts using cufflinks, use the following script
 
 Script : DRG_CGN_Cufflinks.sh
 
-To run the script : $bsusb < DRG_CGN_Cufflinks.sh
+To run the script : $bsub < MyCufflinks.sh
 
 **Step 7**.	Combine all the transcript files created from Step 6:
 
