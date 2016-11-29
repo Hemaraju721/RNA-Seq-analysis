@@ -110,9 +110,13 @@ Sample OutputFile : AsRNAOutput.txt
 
 The pseudogene sequences are mapped against the protein coding gene sequences using BLAST, and only the unique hits are  assigned to parent gene-pseudogene associations. 
 
-Fasta sequences for protein-coding genes and pseudogenes are downloaded from the reference genome, Mus_musculus.GRCm38.dna_rm.primary_assembly.fa. 
+Fasta sequences for protein-coding genes and pseudogenes are downloaded from the reference genome, Mus_musculus.GRCm38.dna_rm.primary_assembly.fa using the script (MusFastaExtract.pl)
 
-These two sets of sequences are mapped against each other using BLAST and the parameter “-max_target_seqs :1” to detect only those protein-coding genes that have a high-level of sequence homology to the pseudogenes used as query. 
+CODE for MusFastaExtract.pl: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MusFastaExtract.pl
+
+These two sets of sequences are mapped against each other using BLAST using the script (MousePseudoToProtein.sh)and the parameter “-max_target_seqs :1” to detect only those protein-coding genes that have a high-level of sequence homology to the pseudogenes used as query. 
+
+CODE for MousePseudoToProtein.sh: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MousePseudoToProtein.sh
 
 Finally, the output obtained from BLAST analyzed to overcome the multiple associations, i.e. when a pseudogene aligns to multiple protein-coding genes. The BLAST output was filtered using the “sort –u” option, which sorts the file and pipes the output that contains only unique hits. Therefore, only unique hits are obtained for further analysis.
 
