@@ -2,8 +2,7 @@
 ### Introduction
 RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarray, RNA-Seq provides unbiased detection of novel transcripts, broader dynamic range for read counts, and easier detection of rare and low-abundance transcripts.
 ### Dataset
-Dataset includes two tissues - Tissue1 (3 samples) and Tissue2 (2 samples).
-Each sample – 40 million, 50 bp reads
+The raw dataset is in *.fastq format
 
 ### Methodology :
 
@@ -37,6 +36,8 @@ To rename the file: $cp <Mus_musculus.GRCm38_RMasked><mm38.fa>
 
 To create symbolic link : $ln-a <mm38.fa> <mm38.fa.fa>
 $ ln -s Hs_RMasked.fa Hs_RMasked.fa.fa
+
+####ALIGNMENT AND TRANSCRIPTOME ASSEMBLY
 
 **Step 5**.	ALIGNMENT USING TOPHAT 2.0
 To align the sample files against the mouse genome using TopHat2.0, use the following script.
