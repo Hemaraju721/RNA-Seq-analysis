@@ -22,20 +22,22 @@ java –jar  /projects/MainFolder/SubFolder/ProjName/Trimmomatic-0.36/trimmoatic
 Make sure to index them after you download them
 
 $ wget -c 'ftp://ftp.ensembl.org/pub/release-84/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz'
+
 cd ../rm_masked
+
 gunzip Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz
 
 **Step 4**.	To filter out non-conventional chromosomes using script(filter_genome.pl)
 
 CODE for filter_genome.pl : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/filtergenome.pl
 
-To run this script : $perl filtergenome.pl <Mus_musculus.GRCm38.dna_rm.primary_assembly.fa> <Mus_musculus.GRCm38_Rmasked.fa>
+To run this script : $perl filtergenome.pl Mus_musculus.GRCm38.dna_rm.primary_assembly.fa Mus_musculus.GRCm38_Rmasked.fa
 
-To build the index : $bowtie2-build <Mus_musculus.GRCm38_RMasked.fa><mm38>
+To build the index : $bowtie2-build Mus_musculus.GRCm38_RMasked.fa mm38
 
-To rename the file: $cp <Mus_musculus.GRCm38_RMasked><mm38.fa>
+To rename the file: $cp Mus_musculus.GRCm38_RMasked mm38.fa
 
-To create symbolic link : $ln-s <mm38.fa> <mm38.fa.fa>
+To create symbolic link : $ln-s mm38.fa mm38.fa.fa
 
 
 ####Alignment and transcriptome assembly
@@ -97,7 +99,7 @@ Sample PC.txt : SamplePC.txt
 
 Script : lincToPC.pl
 
-To run the script : $bsub < lincToPC.pl <OutputFileName>
+To run the script : $bsub < lincToPC.pl OutputFileName
 
 CODE for lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/lincToPc.pl
 
@@ -114,7 +116,7 @@ Script : antiOppGene.pl
 CODE for antiOppGene.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/antiOppGene.pl
 
 
-To run the script : $bsub < antiOppGene.pl  <OutputFileName>
+To run the script : $bsub < antiOppGene.pl  OutputFileName
 
 Sample OutputFile : AsRNAOutput.txt
 
