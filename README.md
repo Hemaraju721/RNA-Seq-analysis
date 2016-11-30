@@ -1,4 +1,4 @@
-# RNA Seq Analysis to detect and categorize noncoding RNAs and further identify respective targets
+# Detect and categorize noncoding RNAs and identify respective targets for RNA-Seq dataset
 ### Introduction
 RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarray, RNA-Seq provides unbiased detection of novel transcripts, broader dynamic range for read counts, and easier detection of rare and low-abundance transcripts.
 ### Dataset
@@ -8,7 +8,8 @@ The raw dataset is in *.fastq format
 
 #### Quality Control
 **Step 1**.	FASTQC: Prior to running RNA Seq alignment, it is important ro run fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/. 
-Command line to run fastqc on unix is $FastQC DRG1.Fasta. 
+
+Command line to run fastqc on unix is : $FastQC Sample1.Fasta. 
 
 This generates folder as an output with many report files. Open the index file after transferring to your windows desktop. All the green should ideally light up but that seldom happens. In the file there is a section "Per base sequence content" which should tell you how much to trim from either end. Usually it is better to choose base position which has variable content. Repeat the same steps for remaining samples as well.
 
