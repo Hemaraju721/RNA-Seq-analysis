@@ -29,7 +29,7 @@ gunzip Mus_musculus.GRCm38.dna_rm.primary_assembly.fa.gz
 
 **Step 4**.	To filter out non-conventional chromosomes using script(filter_genome.pl)
 
-CODE for filter_genome.pl : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/filtergenome.pl
+filter_genome.pl : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/filtergenome.pl
 
 To run this script : $perl filtergenome.pl Mus_musculus.GRCm38.dna_rm.primary_assembly.fa Mus_musculus.GRCm38_Rmasked.fa
 
@@ -47,7 +47,7 @@ To align the sample files against the mouse genome using TopHat2.0, use the foll
 
 Script : MyTopHat.sh
 
-Code for MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
+MyTopHat.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyTopHat.sh
 
 To run the script : $bsub < MyTopHat.sh
 
@@ -57,7 +57,7 @@ To assemble the transcripts using cufflinks, use the following script
 
 Script :MyCufflinks.sh
 
-Code for MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCufflinks.sh
+MyCufflinks.sh :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCufflinks.sh
 
 To run the script : $bsub < MyCufflinks.sh
 
@@ -65,13 +65,13 @@ To run the script : $bsub < MyCufflinks.sh
 
 Script : Create a Cufflinks.gtf.list file
 
-Code for cufflinks.gtf.list :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/cufflinks.gtf.list
+cufflinks.gtf.list :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/cufflinks.gtf.list
 
 **Step 8**.	Merge GTF file along with the combined gtf file created from step 7
 
 Script : MyCuffMerge.sh
 
-Code for MyCuffMerge :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffMerge.sh
+MyCuffMerge :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffMerge.sh
 
 To run the script : $bsub < MyCuffmerge.sh
 
@@ -79,7 +79,7 @@ To run the script : $bsub < MyCuffmerge.sh
 
 Script : MyCuffQuant.sh
 
-Code for MyCuffQuant.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffQuant.sh
+MyCuffQuant.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffQuant.sh
 
 To run the script : $bsub < MyCuffQuant.sh
 
@@ -87,7 +87,7 @@ To run the script : $bsub < MyCuffQuant.sh
 
 Script : MyCuffnorm.sh
 
-Code for MyCuffnorm.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffNorm.sh
+MyCuffnorm.sh : https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MyCuffNorm.sh
 
 To run the script : $bsub < MyCuffnorm.sh
 
@@ -101,7 +101,7 @@ Script : lincToPC.pl
 
 To run the script : $bsub < lincToPC.pl OutputFileName
 
-CODE for lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/lincToPc.pl
+lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/lincToPc.pl
 
 Sample OutputFile : SampleLincAndPC.txt
 
@@ -113,7 +113,7 @@ Sample PC.txt : SamplePC.txt
 
 Script : antiOppGene.pl
 
-CODE for antiOppGene.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/antiOppGene.pl
+antiOppGene.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/antiOppGene.pl
 
 
 To run the script : $bsub < antiOppGene.pl  OutputFileName
@@ -126,11 +126,11 @@ The pseudogene sequences are mapped against the protein coding gene sequences us
 
 Fasta sequences for protein-coding genes and pseudogenes are downloaded from the reference genome, Mus_musculus.GRCm38.dna_rm.primary_assembly.fa using the script (MusFastaExtract.pl)
 
-CODE for MusFastaExtract.pl: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MusFastaExtract.pl
+MusFastaExtract.pl: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MusFastaExtract.pl
 
 These two sets of sequences are mapped against each other using BLAST using the script (MousePseudoToProtein.sh)and the parameter “-max_target_seqs :1” to detect only those protein-coding genes that have a high-level of sequence homology to the pseudogenes used as query. 
 
-CODE for MousePseudoToProtein.sh: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MousePseudoToProtein.sh
+MousePseudoToProtein.sh: https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/MousePseudoToProtein.sh
 
 Finally, the output obtained from BLAST analyzed to overcome the multiple associations, i.e. when a pseudogene aligns to multiple protein-coding genes. The BLAST output was filtered using the “sort –u” option, which sorts the file and pipes the output that contains only unique hits. Therefore, only unique hits are obtained for further analysis.
 
