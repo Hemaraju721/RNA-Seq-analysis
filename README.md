@@ -11,9 +11,9 @@ The raw dataset is in *.fastq format
 
 Command line to run fastqc on unix is : $FastQC Sample1.Fasta. 
 
-This generates folder as an output with many report files. Open the index file after transferring to your windows desktop. All the green should ideally light up but that seldom happens. In the file there is a section "Per base sequence content" which should tell you how much to trim from either end. Usually it is better to choose base position which has variable content. Repeat the same steps for remaining samples as well.
+This generates an output folder with many report files in it. Open the index file after transferring to your windows desktop. All the green should ideally light up but that seldom happens. In the file there is a section "Per base sequence content" which should tell you how much to trim from either end. Usually it is better to choose base position which has variable content. Repeat the same steps for remaining samples as well.
 
-**Step 2**.	TRIMMOMATIC: To do trimming use trimmomatic. Clip using the values you found using previous steps and also provide a minimum Mapping Q score (we used 20) you want to keep, but here more stringent values are preferred. Minimum length to be kept depends on your original sequence length. Don’t go below 36bp.
+**Step 2**.	TRIMMOMATIC: To do trimming use trimmomatic. Clip the values you found using previous steps and also provide a minimum Mapping Q score (we used 20) you want to keep, but here more stringent values are preferred. Minimum length to be kept depends on your original sequence length. Don’t go below 36bp.
 
 Code :  
 java –jar  /projects/MainFolder/SubFolder/ProjName/Trimmomatic-0.36/trimmoatic-0.36.jar SE –phred64 Sample1.fastq Sample1_new.fastq HEADCROP:14 AVGQUAL:20 MINLEN:36.  Once you get the output files from trimmomatic use fastqc again to see if the green light come up for most sections. The Kmer section most of the time is yellow or red, so ignore. Once all clear, align against transcriptome/genome.
