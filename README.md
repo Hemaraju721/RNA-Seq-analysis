@@ -1,6 +1,11 @@
 # Detect and categorize noncoding RNAs and identify respective targets for RNA-Seq dataset
 ### Introduction
 RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarray, RNA-Seq provides unbiased detection of novel transcripts, broader dynamic range for read counts, and easier detection of rare and low-abundance transcripts.
+
+###Software/Hardware requirements###
+
+A computer with a decent amount of RAM. Runtimes for Perl and the Bash shell. Basic command shell programming abilities for unix platform.
+
 ### Dataset
 The raw dataset is in *.fastq format
 
