@@ -4,7 +4,7 @@ RNA-Seq technology enables deep profiling of the transcriptome. Unlike microarra
 
 ###Software/Hardware requirements###
 
-A computer with a decent amount of RAM. Runtimes for Perl and the Bash shell. Basic command shell programming abilities for unix platform.
+A computer with a decent amount of RAM. Runtimes for Perl and the Bash shell. Basic command shell programming abilities for unix platform. TopHat 2.0, Cufflinks, BLAST installed.
 
 ### Dataset
 The raw dataset is in *.fastq format
@@ -99,32 +99,39 @@ To run the script : $bsub < MyCuffnorm.sh
 
 **Step 11**.	LINCRNA AND TARGETS : Extract all lincRNAs, chromosome and their genomic coordinates from step 10 and put them in a file called PC.txt. Extract all protein coding genes, chromosome and their genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called lincToPc.pl to identify the neighboring expressed protein coding genes
 
-Sample lincRNA.txt : SamplelincRNA.txt
+###Example to detect targets for lincRNA
 
-Sample PC.txt : SamplePC.txt
+Step I : Download the sample lincRNA.txt : SamplelincRNA.txt (Includes four fields  : lincRNA, chromosome number, start, end ) https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/lincRNA.txt
+
+Step II : Download the sample PC.txt : SamplePC.txt (Includes four fields  : PC, chromosome number, start, end ) 
+https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/ProteinCoding.txt
 
 Script : lincToPC.pl
 
-To run the script : $bsub < lincToPC.pl OutputFileName
+Step III: To run the script : $bsub < lincToPC.pl OutputFileName
 
 lincToPC.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/lincToPc.pl
 
-Sample OutputFile : SampleLincAndPC.txt
+Step IV: Check the Sample OutputFile : SampleLincAndPC.txt (Includes lincRNA, Gene on the right, Gene on the left, DE Gene Name, Distance)
+https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/LincToPC_Output.txt
 
 **Step 12**.	ANTISENSE AND TARGETS : Extract all Antisense RNAs, chromosome, strand and genomic coordinates from step 10 and put them in a file called asRNA.txt. Extract all protein coding genes chromosome, strand and genomic coordinates from step 10 and put them in a file called PC.txt. Use the script called AntisenseToPConOppositeStrand.pl to identify the neighboring expressed protein coding genes
 
-Sample asRNA.txt : SampleasRNA.txt
+###Example to detect targets for asRNAs
 
-Sample PC.txt : SamplePC.txt
+Step I : Download the sample asRNA.txt : SampleasRNA.txt https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/MouseAS.txt
+
+Step II : Download the sample PC file
+Sample PC.txt : SamplePC.txt https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/MouseGTF.txt
 
 Script : antiOppGene.pl
 
 antiOppGene.pl :https://github.com/hrccspipeline/HRCCSPipeline/blob/master/scripts/antiOppGene.pl
 
+Step III : To run the script : $bsub < antiOppGene.pl  OutputFileName
 
-To run the script : $bsub < antiOppGene.pl  OutputFileName
+Step IV : Check the Sample OutputFile : AsRNAOutput.txt https://github.com/hrccspipeline/HRCCSPipeline/blob/master/HRCCSPipeline/OutputGenesOnOppStrand.txt
 
-Sample OutputFile : AsRNAOutput.txt
 
 **Step 13**.	PSEUDOGENE AND PARENT PROTEIN CODING GENE (TARGETS)
 
